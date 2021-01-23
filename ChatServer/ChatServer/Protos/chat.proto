@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+option csharp_namespace = "ChatServer.Protos";
+
+service ChatService {
+	rpc Join(stream Message) returns (stream Message);
+	rpc Insert(Message) returns (Empty);
+	rpc GetAll(Empty) returns (Messages);
+}
+
+message Empty {
+
+}
+
+message Message {
+	string user = 1;
+	string text = 2;
+	int32 chatId = 3;
+}
+
+message Messages {
+	repeated Message items = 1;
+}
